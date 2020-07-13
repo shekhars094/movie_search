@@ -138,14 +138,12 @@ const Search = () => {
 										</p>
 									</div>
 
-									<div className="d-block w-5">
+									<div className="d-block w-5 text-center">
 										<IoIosHeart
 											style={{ color: "green" }}
 											onClick={(event) => {
 												addFav(movie.Poster, event);
-											}}>
-											Like
-										</IoIosHeart>
+											}}></IoIosHeart>
 									</div>
 								</div>
 							</div>
