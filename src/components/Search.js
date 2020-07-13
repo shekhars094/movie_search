@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeart } from "react-icons/io";
 
 const Search = () => {
 	const [values, setValues] = useState({
@@ -139,13 +139,13 @@ const Search = () => {
 									</div>
 
 									<div className="d-block w-5">
-										<span
+										<IoIosHeart
 											style={{ color: "green" }}
 											onClick={(event) => {
 												addFav(movie.Poster, event);
 											}}>
 											Like
-										</span>
+										</IoIosHeart>
 									</div>
 								</div>
 							</div>
