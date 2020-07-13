@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { IoIosHeart, IoIosHeartEmpty } from "react-icons";
+import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 
 const Search = () => {
 	const [values, setValues] = useState({
@@ -11,6 +11,29 @@ const Search = () => {
 	});
 
 	const [results, setResults] = useState([]);
+	const [favroute, setFavroute] = useState([]);
+
+	const addFav = (favMovie) => {
+		if (localStorage.getItem("favMovie")) {
+			let localFavData = localStorage.getItem("favMovie");
+			let favArray = JSON.parse(localFavData);
+			favArray.push(favMovie);
+			localStorage.setItem("favMovie", JSON.stringify(favArray));
+		} else {
+			localStorage.setItem("favMovie", JSON.stringify([favMovie]));
+		}
+	};
+
+	const addUnFav = (unFavMovie) => {
+		if (localStorage.getItem("unFavMovie")) {
+			let localFavData = localStorage.getItem("unFavMovie");
+			let favArray = JSON.parse(localFavData);
+			favArray.push(unFavMovie);
+			localStorage.setItem("unFavMovie", JSON.stringify(favArray));
+		} else {
+			localStorage.setItem("unFavMovie", JSON.stringify([unFavMovie]));
+		}
+	};
 
 	const handleChange = (name) => (event) => {
 		setValues({ ...values, [name]: event.target.value });
@@ -79,7 +102,7 @@ const Search = () => {
 				</div>
 			</form>
 
-			<div className="container bg-dark text-white">
+			<div className="container bg-dark text-white rounded">
 				<div className="row">
 					{results.map((movie, index) => {
 						return (
@@ -92,11 +115,33 @@ const Search = () => {
 										width="300px"
 										height="400px"
 									/>
-
 									<div>
 										<p className="text-center">
 											{movie.Title}
 										</p>
+									</div>
+
+									<div className="d-block w-5">
+										<span
+											style={{ color: "green" }}
+											onClick={() => {
+												addFav(movie.Poster);
+											}}>
+											Like{" "}
+										</span>
+										<span
+											style={{
+												color: "red",
+												display: "inline-block",
+												width: "100px",
+												textAlign: "center",
+												margin: "0 auto",
+											}}
+											onClick={() => {
+												addUnFav(movie.Poster);
+											}}>
+											Unlike
+										</span>
 									</div>
 								</div>
 							</div>

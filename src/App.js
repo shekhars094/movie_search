@@ -9,13 +9,12 @@ function App() {
 	return (
 		<Router>
 			<div className="container">
+				<Nav />
 				<Switch>
-					<Route exact path="/fav" component={Favroute}></Route>
+					<Route exact path="/" component={Search}></Route>
+					<Route path="/fav" component={Favroute}></Route>
 					<Route path="/unfav" component={UnFavroute}></Route>
 				</Switch>
-
-				<Nav />
-				<Search />
 			</div>
 		</Router>
 	);
