@@ -13,7 +13,7 @@ const Search = () => {
 	const [results, setResults] = useState([]);
 	const [favroute, setFavroute] = useState([]);
 
-	const addFav = (favMovie) => {
+	const addFav = (favMovie, event) => {
 		if (localStorage.getItem("favMovie")) {
 			let localFavData = localStorage.getItem("favMovie");
 
@@ -25,9 +25,9 @@ const Search = () => {
 				let uniqueFav = favArray.filter(function (elem, pos) {
 					return favArray.indexOf(elem) == pos;
 				});
-
 				setFavroute(uniqueFav);
 				localStorage.setItem("favMovie", JSON.stringify(uniqueFav));
+				event.target.style.color = "green";
 			} else {
 				favArray.push(favMovie);
 
@@ -37,6 +37,7 @@ const Search = () => {
 
 				setFavroute(uniqueFav);
 				localStorage.setItem("favMovie", JSON.stringify(uniqueFav));
+				event.target.style.color = "red";
 			}
 
 			let uniqueFav = favArray.filter(function (elem, pos) {
@@ -47,6 +48,7 @@ const Search = () => {
 			localStorage.setItem("favMovie", JSON.stringify(uniqueFav));
 		} else {
 			localStorage.setItem("favMovie", JSON.stringify([favMovie]));
+			event.target.style.color = "red";
 		}
 	};
 
@@ -139,8 +141,8 @@ const Search = () => {
 									<div className="d-block w-5">
 										<span
 											style={{ color: "green" }}
-											onClick={() => {
-												addFav(movie.Poster);
+											onClick={(event) => {
+												addFav(movie.Poster, event);
 											}}>
 											Like
 										</span>
