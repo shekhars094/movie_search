@@ -27,7 +27,7 @@ const Search = () => {
 				});
 				setFavroute(uniqueFav);
 				localStorage.setItem("favMovie", JSON.stringify(uniqueFav));
-				event.target.style.color = "green";
+				event.target.style.color = "black";
 			} else {
 				favArray.push(favMovie);
 
@@ -120,7 +120,7 @@ const Search = () => {
 			</form>
 
 			<div className="container bg-dark text-white rounded">
-				<div className="row">
+				<div className="row bg-primary">
 					{results.map((movie, index) => {
 						return (
 							<div key={index} className="col-sm-4">
@@ -140,7 +140,7 @@ const Search = () => {
 
 									<div className="d-block w-5 text-center">
 										<IoIosHeart
-											style={{ color: "green" }}
+											style={{ color: "black" }}
 											onClick={(event) => {
 												addFav(movie.Poster, event);
 											}}></IoIosHeart>

@@ -7,8 +7,14 @@ const Nav = () => {
 			<div className="navbar bg-dark">
 				<ul className="nav">
 					<li className="nav-item ">
-						<Link className="nav-link" to="/">
-							Home
+						<Link class="navbar-brand" to="/">
+							<img
+								src="https://images.pexels.com/photos/65128/pexels-photo-65128.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+								width="30"
+								className="rounded"
+								height="30"
+								alt=""
+							/>
 						</Link>
 					</li>
 
