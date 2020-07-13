@@ -18,7 +18,10 @@ const Search = () => {
 			let localFavData = localStorage.getItem("favMovie");
 			let favArray = JSON.parse(localFavData);
 			favArray.push(favMovie);
-			localStorage.setItem("favMovie", JSON.stringify(favArray));
+			let uniqueFav = favArray.filter(function (elem, pos) {
+				return favArray.indexOf(elem) == pos;
+			});
+			localStorage.setItem("favMovie", JSON.stringify(uniqueFav));
 		} else {
 			localStorage.setItem("favMovie", JSON.stringify([favMovie]));
 		}
