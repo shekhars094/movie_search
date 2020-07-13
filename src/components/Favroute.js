@@ -4,9 +4,9 @@ const Favroute = () => {
 	const favArray = JSON.parse(favroute);
 
 	return (
-		<div>
+		<div className="container">
 			{console.log(typeof favArray)}
-			<div className="row">
+			<div className="row bg-dark rounded mt-3">
 				{favArray.map((item, index) => {
 					return (
 						<div className="col-sm-4" key={index}>

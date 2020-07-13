@@ -16,25 +16,37 @@ const Search = () => {
 	const addFav = (favMovie) => {
 		if (localStorage.getItem("favMovie")) {
 			let localFavData = localStorage.getItem("favMovie");
+
 			let favArray = JSON.parse(localFavData);
-			favArray.push(favMovie);
+
+			if (favArray.includes(favMovie)) {
+				let movieIndex = favArray.indexOf(favMovie);
+				favArray.splice(movieIndex, 1);
+				let uniqueFav = favArray.filter(function (elem, pos) {
+					return favArray.indexOf(elem) == pos;
+				});
+
+				setFavroute(uniqueFav);
+				localStorage.setItem("favMovie", JSON.stringify(uniqueFav));
+			} else {
+				favArray.push(favMovie);
+
+				let uniqueFav = favArray.filter(function (elem, pos) {
+					return favArray.indexOf(elem) == pos;
+				});
+
+				setFavroute(uniqueFav);
+				localStorage.setItem("favMovie", JSON.stringify(uniqueFav));
+			}
+
 			let uniqueFav = favArray.filter(function (elem, pos) {
 				return favArray.indexOf(elem) == pos;
 			});
+
+			setFavroute(uniqueFav);
 			localStorage.setItem("favMovie", JSON.stringify(uniqueFav));
 		} else {
 			localStorage.setItem("favMovie", JSON.stringify([favMovie]));
-		}
-	};
-
-	const addUnFav = (unFavMovie) => {
-		if (localStorage.getItem("unFavMovie")) {
-			let localFavData = localStorage.getItem("unFavMovie");
-			let favArray = JSON.parse(localFavData);
-			favArray.push(unFavMovie);
-			localStorage.setItem("unFavMovie", JSON.stringify(favArray));
-		} else {
-			localStorage.setItem("unFavMovie", JSON.stringify([unFavMovie]));
 		}
 	};
 
@@ -130,20 +142,7 @@ const Search = () => {
 											onClick={() => {
 												addFav(movie.Poster);
 											}}>
-											Like{" "}
-										</span>
-										<span
-											style={{
-												color: "red",
-												display: "inline-block",
-												width: "100px",
-												textAlign: "center",
-												margin: "0 auto",
-											}}
-											onClick={() => {
-												addUnFav(movie.Poster);
-											}}>
-											Unlike
+											Like
 										</span>
 									</div>
 								</div>
